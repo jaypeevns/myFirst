@@ -1,0 +1,46 @@
+entity Customer {
+	name String,
+    mobile String
+}
+
+entity Address {
+	line1 String,
+    line2 String,
+    city String,
+    state String,
+    pincode String
+}
+
+entity Vehicle {
+	VehicleNumber String,
+    Make String,
+    Model String,
+    Year Integer,
+    Active String
+}
+
+enum Language {
+    FRENCH, ENGLISH, SPANISH
+}
+
+relationship OneToOne {
+	Customer{address} to Address
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Customer to Vehicle{customer}
+}
+
+// Set pagination options
+paginate Customer, Address with pagination
+paginate Vehicle with infinite-scroll
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
